@@ -1,62 +1,49 @@
-#OSI  TCP/IP
+#Modelos OSI TCP/IP
 
 ##Capas del Modelo OSI (Modelo de referencia para protocolos de red)
 
-Su funcion principal es definir estandares que permitan la comunicacion entre diferentes hardware, aplicaciones y sistemas que existen
-establece las caractaristicas que debe de poseer cada uno de estos elementos para que sea posible una comunicacion efectiva entre los mismos esto permite que las capas superiores puedan utilizar tecnologias de las capas inferiores sin necesidad de una implementacion
+El mismo se encuente conformado por 7 capas las cuales se definen de la inferior a la superior.
 
-###Fisica 
+### Capas Fisica
 
-Esta capa organiza y establece estandares para los medios de transmicion de informacion y sus tecnologias
+Esta es la encargada de transmitir las senales fisicas entre los equipos.
 
-- cables UTP, cables Fibra 
-- las tecnologias de transmision inalambrica bluetooth, wifi, 
-- equipos de comunicacion switches, routers
+Ejemplos: Cable UTP, cable Coaxial, Fibra Obtica, NIC, Pares Trenzados de cobre
 
-Ejemplo: Esto es lo que permite que dispositivos como con diferentes versiones de antenas wifi ej. WiFi 5 y WiFi 7 puedan comunicarse perfectamente asi como con el resto de tecnologias y equipos
-Resumiendo: Esta capa dicta las metricas que deben de poseer el hardware para que sea compatible entre todos y no exista la necesidad de cambiarlo cada vez que se actualicen o salgan mas modernos o con mayores prestaciones 
+### Capa de Enlace
 
-!!! Senales
+Actua como enlace entre las 2 capas (Fisica - Red) , permite el control de errores, garantiza el acceso al medio. En la misma comienza a conformarce el PDU agregando las direcciones MAC y es llamado (trama)
 
-###Enlace a Datos
+Ejemplos: ARP, Switch L2, Modems, ADSL, MAC
 
-Esta capa existe una vez que esta implementada la capa fisica su principal funcion es controlar que las senales recividas de la capa fisica y los paquetes recividos de la capa logica vengan con las caracteristicas necesarias que permitan
-una comunicacion lo mas correcta posible ya a partir de esta capa es que existen los protocolos de redes
+### Capa de Red
 
-- Procolo ADSL: Controla que la senal telefonica no venga con ruido y con la intensidad necesaria ademas que permite verificar el estado de la capa fisica
-- Protocolo Ethernet: Este se subdivide en 2 capas la capa MAC y la LLC  entre las cosas que define son los elementos que son agregados a la trama de red
-- Protocolo ARP: Este almacena en cada equipo una tabla con las direcciones MAC/IP de cada dispositivo con el que se ha comunicado
-permitiendo buscar rapidamente el nombre real del equipo para realizar la transmision de datos. 
+En esta capa es donde se establece la comunicacion con otras redes, para lograr esto realiza 2 de los procesos mas fudamentales en las redes actuales el direccionamiento y el enrutamiento. En esta capa el PDU es denominado (paquete)
 
-Ejemplo: Esta capa es la que actua como traductor entre la capa fisica y la capa de red adem
-Resumiendo: Este protocolo su principal funcion es la de controlar la tranferencia de los datos
-
-!!! Frames
-
-###Capa de Red
-
-Esta capa es la que posibilita la conectividad entre dos redes fisicamente aisladas utilizando las caracteristicas de las capas inferiores
-
-- Protocolo BGP
-- Protocolo IP
-- Protocolo ICMP
-- Protocolo IGMP
-- Protocolo OCPF
-
-!!! Packets
-
-##Protocolos Multicapas
-
-ADSL: Fisica, Enlace a Datos
-Bluetooth: Fisica, Enlace a Datos
-Wifi: Fisica, Elace a Datos
-IP: Enlace a Datos, Red
-ARP: Enlace a Datos, Red
+Ejemplos: IP, RIP, BGP
 
 ### Capa de Transporte
 
+Esta es la capa encargada de definir como se realizaria la comunicacion definiendo si el segmento que es el nombre que lleva el PDU en esta capa es necesario que llege a su destino o no lo cual es garantizado mediante los protocolos: Protocolo de Controll de Transferencia (TCP) y el Protocolo de Datagrama de usuario (UDP) de los cuales el primero esta orientado a la conexion y el segundo no en esta capa el PDU
+es denominado segmento o datagrama
 
-Transporte -
-Session - 
-Aplicacion
-Presentacion 
+Ejemplos: TCP UDP
+
+### Capa de sesion
+
+Funciona como especie de interlocutor el cual define cuando comienza la comunicacion, cuando debe de hablar cada uno.
+
+Ejemplo: SSH Telnet NetBIOS 
+
+### Capa de Presentacion 
+
+Es la encargada de estandarizar los datos para su transmicion soporta formatos jpg, mpeg y mas, ademas de comprimir los datos, ademas de realizar el cifrado de los datos
+
+Ejemplo: SSL y TLS
+
+### Capa Aplicacion
+
+Esta es la capa con la que interactua al usuario es decir el servicio que sea necesario consumir por el usuario
+
+Ejemplo: DNS, Correo, HTTP, HTTPs
+

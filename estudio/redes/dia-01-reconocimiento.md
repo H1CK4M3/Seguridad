@@ -152,3 +152,6 @@ buffer - es un espacio intermedio en la RAM (rapido) entre el CPU (rapido) y el 
 
 cache - este es una porcion de la memoria donde se almacenan archivos frecuentemente utilizables permitiendo una lectura mas rapidas de los mismos ya que no se hace necesaria acceder al disco mucho mas lento 
 
+## Pendiente (Proximamente)
+
+fdisk - profundizar en todas las salidas del comando
