@@ -27,9 +27,9 @@ git remote set-url origin git@github.com:username/repository.git
 Para subir actualizar nuestros repos seria de la siguente manera
 
 1- Generamos una captura  
-git commit "<nombre>"
+git commit -m "<nombre>"
 2- Agregamos la ruta de la carpeta que vamos a anadir 
 git add <ruta de la carpeta a anadir>
-3- Subimos lo nuevo
-git push git@github.com:<username>/<nombre_repo.git> 
+3- Subimos lo nuevoc
+git push git@github.com:<username>/<nombre_repo.git>
 
