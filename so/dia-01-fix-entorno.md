@@ -29,6 +29,39 @@ Error 2: durante la realizacion el documento no escribo el #!/bin/bash por lo qu
 
 Error 3: en la reparacion declaro !#/bin/bash por lo que el PC no levantaba aun
 
+### Errores con el tackpad
+
+Error: Mi laptop no detecta el touchpad tengo que darle click al tackpad para que me detecte las acciones lo cual no me gusta por lo que me dedique  a indagar como reparar esto
+
+Diagnostico: Para diagnosticar si mi laptop ve el touchpad utilizo el siguiente comando
+
+sudo libinput list-devices | grep touchpad
+
+Buscar el ID del dispositivo que quiero habilitar
+
+sudo xinput list 
+
+Activar el panel tactil del touchpad
+
+sudo xinput set-prop <id> "libinput Tapping Enabled" 1
+
+Hacer la configuracion permanente
+
+sudo nano /etc/X11/xorg.conf.d/40-libinput.conf
+
+Pegarle el siguiente contenido
+
+Section "InputClass"
+    Identifier "libinput touchpad catchall"
+    MatchIsTouchpad "on"
+    MatchDevicePath "/dev/input/event*"
+    Driver "libinput"
+    Option "Tapping" "on"
+    Option "TappingButtonMap" "lrm"
+    Option "NaturalScrolling" "true"
+    Option "DisableWhileTyping" "true"
+EndSection
+
 ## Aprendizaje
 
 1 - Realizar salvas de los archivos de configuracion en dotfiles cada vez que realice algun cambio pudiendo levantar de los viejos cualquier error

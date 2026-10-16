@@ -1,0 +1,83 @@
+[global]
+    monitor = 0
+    follow = mouse
+    width = 320
+    height = 120
+
+    # Posición en la pantalla
+    origin = top-right
+    offset = 20x50
+
+    # Límite de notificaciones apiladas
+    notification_limit = 3
+
+    # Barra de progreso (para timeouts)
+    progress_bar = true
+    progress_bar_height = 8
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    progress_bar_corner_radius = 4
+
+    # Marco (borde)
+    frame_width = 1
+    frame_color = "#888888"
+
+    # Fuente
+    font = FiraCode Nerd Font 10
+
+    # Formato del texto
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+
+    # Iconos
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 64
+
+    # Tiempo y comportamiento
+    timeout = 8
+    ignore_newline = no
+    gap_size = 8
+    sort = yes
+    idle_threshold = 120
+    history_length = 20
+
+    # --- ESTILO (igual que Polybar) ---
+    background = "#D3D3D3"
+    foreground = "#2E2E2E"
+    transparency = 0
+    corner_radius = 10
+    padding = 12
+    horizontal_padding = 14
+    text_icon_padding = 0
+    separator_height = 1
+    separator_color = "#888888"
+
+    # Indicador de urgencia
+    highlight = "#C0392B"
+
+    # Botones del ratón
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[urgency_low]
+    background = "#D3D3D3"
+    foreground = "#5A5A5A"
+    frame_color = "#888888"
+    timeout = 5
+
+[urgency_normal]
+    background = "#D3D3D3"
+    foreground = "#2E2E2E"
+    frame_color = "#888888"
+    timeout = 8
+
+[urgency_critical]
+    background = "#D3D3D3"
+    foreground = "#C0392B"
+    frame_color = "#C0392B"
+    timeout = 0

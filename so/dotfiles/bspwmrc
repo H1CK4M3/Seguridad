@@ -1,0 +1,39 @@
+#!/bin/bash
+# ============================================
+# CONFIGURACIÓN DE BSPWM PARA DEV/OS
+# ============================================
+
+# --- Configuración de BSPWM ---
+# Establece los escritorios virtuales (4 en este caso)
+
+bspc monitor -d Relax Pentest Code Estudio
+
+# Lanza Polybar (2 barras), Picom y Dunst de una sola vez
+
+sxhkd &
+# --- Iniciar Polybar (tres barras) ---
+# --- Polybar (seis barras) ---
+# --- Polybar (siete barras) ---
+killall -q polybar
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+polybar izquierda &
+polybar taskbar &
+polybar centro &
+polybar derecha &
+polybar volumen &
+polybar usb &
+polybar red &
+picom &
+dunst &
+# --- Fondo de pantalla ---
+feh --bg-fill /home/andy/Imagenes/fondo_lago.jpg &
+
+# --- Script de notificación de batería ---
+~/.config/scripts/battery-notify.sh &
+~/.config/scripts/usb-notify.sh &
+# --- Configuración del teclado ---
+# Layout español e inglés, alternar con Alt + Shift
+
+setxkbmap -layout es,gb -option grp:alt_shift_toggle &
+# Widget de disco en el escritorio
+conky -c ~/.config/conky/disco.conf &
