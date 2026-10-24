@@ -6,7 +6,7 @@ El mismo se encuentra conformado por 7 capas las cuales se definen de la inferio
 
 ### Capas Fisica
 
-Esta es la encargada de transmitir las senales fisicas (electricas, luz, radio) entre los equipos a traves del medio mediante la modulacion, establece los limites de velocidades en bits/seg
+Se encarga de la transmicion de los bits asegurandose que los bit transmitidos sean un 1 y que al receptor le llegue un 1 y no un 0.
 
 Ejemplos: Cable UTP, cable Coaxial, Fibra Optica, NIC, Pares Trenzados de cobre, conectores RJ45
 
