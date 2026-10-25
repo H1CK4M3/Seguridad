@@ -1,51 +1,40 @@
-# Tema 1 - Ejercicio 1
+# Tema 1 - Ejercicios de Captura (Wireshark/Tcpdump)
 
-1 - Realizar una captura de trafico, abrir un navegador desde el acceder
-a Google eh identificar mi servidor DNS y la IP de Google
-2 - Identificar capura de handshake eh identificar a que puerto se
-conecto
+## Ejercicio 1: Análisis DNS y de Red
 
-# Respuesta
+### Respuesta
+- **DNS Local:** Se captó la IP de mi servidor DNS: `192.168.1.1`.
+- **Servidores Autoritativos:** Se identificaron 4 servidores DNS de Google:
+  - `ns4.google.com` (216.239.34.10)
+  - `ns3.google.com` (216.239.36.10)
+  - `ns2.google.com` (2001:4860:4802:36::a)
+  - `ns1.google.com` (216.239.38.10)
+- **Registros A:** Se identificó un registro A para `fonts.gstatic.com` con IP `142.251.210.67`.
 
-Ejercicio 1
+### Observaciones
+- Solo se observa tráfico DNS de mi IP (`192.168.1.109`) hacia mi router (`192.168.1.1`).
+- Mi router actúa como intermediario (DNS local). Él es quien consulta a internet y luego me responde.
+- **Aclaración MAC vs IP:** No se observa la MAC de Google porque la MAC solo existe en la red local (Capa 2). El único salto de Capa 2 es entre mi PC y mi router. La comunicación hacia Google se hace por IP (Capa 3).
 
-- Se logra captar la direccion IP de mi DNS: 192.168.1.1
-- Se logran identificar 1 paquetes con la conexion con el servidor autoritativo ns1.google.com
-- Se logra identidicar otra paquete con las direcciones un clase A fonts.gstatic.com 142.251.210.67
-- Se logra identificar 4 servidores DNS ns4.google.com ns3.google.com ns2.google.com ns1.google.com 
-con las direcciones IP 216.239.34.10, 216.239.36.10, 2001:4860:4802:36::a, 216.239.38.10
+---
 
-Ejercicio 2
+## Ejercicio 2: Análisis de Handshake y ACKs (TCP)
 
+### Respuesta
+- Se identifica el handshake TCP entre mi PC y la IP `104.21.54.91`.
+- La comunicación es **HTTPS** porque se realiza por el puerto `443`.
+- La comunicación se inició correctamente: se capturó el paquete `SYN` (solicitud), seguido del `SYN/ACK` (respuesta del servidor) y el `ACK` final.
 
+### Observaciones (Control de Flujo)
+- Se identifica un grupo de paquetes consecutivos TCP enviando ACK.
+- El `Seq` se mantiene fijo, mientras el valor de `Ack` va en aumento. Esto significa que se está confirmando la recepción de datos.
+- Se identifica que el valor de `Len` es `0`, lo que indica que no se están enviando nuevos datos de aplicación.
+- El `Ack` en aumento notifica que se recibieron los datos y el siguiente que se espera es X.
 
-## Obsevaciones
+---
 
-Extras
+## Notas Técnicas (Conceptos Clave)
 
-- En el analisis de captura se identifica un grupo de paquetes consecutivos de TCP que envian ACK
-- Se logra identificar que el seq es el mismo, el valor de ACK sigue en crecimiento lo que significa que esta constantemente reportando que el paquete llego a su destino
-- Se identifica que el valon del len es 0 lo que indica que no se estan enviando 
-nuevos datos.
-- Se identfica que el ACK si se encuentra en aumento lo cual notifica
-que recivio los datos que el siguien que espera es X 
-
-Ejercicio 1
-
-- Solo se obseva trafico de DNS de mi IP con la 192.168.1.1 (router)
-- La 192.168.1.1 es la que esta haciendo funcion de servidor de DNS es 
-decir y es esta la que realiza las peticiones hacia mi proveedor de servicio
-- Para identificar la IP de google es necesario un analisis del paquete
-directo contra google sino que pasan a traves de mi router y este le responde a mi PC
-- En el paquete de respuesta si debe de venir la direccion IP de google
-- No se va a observar MAC de DNS de google debido a que la esta solo es visible en comunicaciones a nivel local
-y el intercambio y asignacion de MAC es en capa 2
-
-Ejercicio 2
-
-
-## Notas
-
-Seq - es el numero de identificacion del primer byte de datos es el valor que posibilita armar luego
-la informacion.
-Len - es el tamano del payload del paquete.
+- **Seq (Sequence Number):** Es el número de identificación del primer byte de datos. Es el valor que posibilita el **reensamblado** de la información (saber cuál es el primero y cuál el último). En el handshake inicial (SYN), el `Seq` es 0 al no haber datos previos.
+- **Len (Length):** Es el tamaño del **payload** (carga útil o datos reales de la aplicación). No incluye las cabeceras. Si es 0, no hay información de aplicación en el paquete.
+- **Ack (Acknowledgment):** Es el número del siguiente byte que el receptor espera recibir. Confirma la recepción de los datos anteriores.
