@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-main (){
+int main (){
 	int edad = 32;
-	printf("Mi edad es de %i \n" ,edad);
+	printf("La edad es de %d\n", edad);
+        printf("Lo almacene en %p", &edad);
 }
