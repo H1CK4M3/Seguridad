@@ -67,7 +67,8 @@ nc -lnvp <puerto>
 
 4 - Una vez conectado investigamos sobre que usuario estamos corriendo y los permisos del mismo
 
-whoami | sudo -l
+whoami 
+sudo -l
 
 5 - Buscamos binarios con permisos de SUID es decir que ejecutan tareas como root
 
@@ -87,5 +88,13 @@ shell_exec - Se queda colgado en ocaciones
 proc_open - Igual puede dar problemas
 fsockopen - establece la conexion correctamente pero no abre la shell
  
+## Vulnerabilidades
 
+Subida de fichero no restringida - La misma posibilita la subida de ficheros desde un formulario de la web sin la debida 
+validacion.
+
+Ejecucion de codigo remoto - Consiste en la ejecucion de codigos propios en el PC de la victima desde la pc del atacante.
+
+Escalada de privilegios mediante permisos SUID - Consiste en utilizar aplicaciones que se ejecutan como root con el fin de 
+lograr una shell root o ejecutar comandos como root
 
